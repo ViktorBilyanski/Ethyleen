@@ -81,31 +81,8 @@ Ethyleen/
 
 ### Wiring Diagram
 
-```
-                    ┌─────────────────────────────┐
-                    │   ESP32-S3-DevKit-Lipo       │
-                    │          (Olimex)             │
-                    │                               │
-   MQ-135 AO ──────┤ GPIO 1 (ADC1_CH0)             │
-   MQ-3  AO ──────┤ GPIO 2 (ADC1_CH1)             │
-   MQ-9  AO ──────┤ GPIO 4 (ADC1_CH3)             │
-                    │                               │
-                    │ UEXT ◄── CABLE-UEXT-JWF ──── MOD-BME280
-                    │   (SDA=GPIO8, SCL=GPIO9)      │
-                    │                               │
-   LiPo 3.7V ──────┤ JST Battery Connector         │
-                    │   └── GPIO 3 (battery sense)  │
-                    └─────────────────────────────┘
+<img width="904" height="704" alt="Screenshot 2026-03-27 132334" src="https://github.com/user-attachments/assets/dcbce1ec-4ecc-418c-94ef-7457c71a7e6d" />
 
-   MT3608 Boost Converter:
-   Battery 3.7V ──▶ MT3608 IN ──▶ MT3608 OUT (5V) ──▶ MQ-135 VCC
-                                                   ──▶ MQ-3  VCC
-                                                   ──▶ MQ-9  VCC
-
-   All MQ sensor GND pins → common GND on breadboard
-   MT3608 GND → common GND on breadboard
-   ESP32-S3 GND → common GND on breadboard
-```
 
 ### What Else You Might Need
 
