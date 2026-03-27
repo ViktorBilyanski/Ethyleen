@@ -1,4 +1,4 @@
-# Ethyleen
+<img width="916" height="720" alt="Screenshot 2026-03-27 174801" src="https://github.com/user-attachments/assets/21952d51-7124-4c9c-b07f-11ee4ae052f1" />    # Ethyleen
 
 Сензори, които следят годността на храната, и изпращат нотификация на потребителя когато някой продукт е на път да се развали, като по този начин се намалява прахосването на храна.
 
@@ -81,7 +81,7 @@ Ethyleen/
 
 ### Wiring Diagram
 
-<img width="904" height="704" alt="Screenshot 2026-03-27 132334" src="https://github.com/user-attachments/assets/dcbce1ec-4ecc-418c-94ef-7457c71a7e6d" />
+<img width="916" height="720" alt="image" src="https://github.com/user-attachments/assets/789c0df1-3542-476f-8aa1-38991c472ee3" />
 
 
 ### What Else You Might Need
