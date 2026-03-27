@@ -1,0 +1,30 @@
+{
+  "rules": {
+    "readings": {
+      "$device_id": {
+        ".read": true,
+        ".write": true,
+        ".indexOn": ["timestamp"]
+      }
+    },
+    "history": {
+      "$device_id": {
+        ".read": true,
+        ".write": true,
+        ".indexOn": ["timestamp"]
+      }
+    },
+    "alerts": {
+      "$device_id": {
+        ".read": true,
+        ".write": true
+      }
+    },
+    "recipes": {
+      "$device_id": {
+        ".read": true,
+        ".write": true
+      }
+    }
+  }
+}

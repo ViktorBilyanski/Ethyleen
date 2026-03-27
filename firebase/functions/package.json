@@ -1,0 +1,14 @@
+{
+  "name": "ethyleen-functions",
+  "description": "Ethyleen Cloud Functions — spoilage alerts and AI recipe suggestions",
+  "engines": {
+    "node": ">=18"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^11.11.0",
+    "firebase-functions": "^4.5.0",
+    "@anthropic-ai/sdk": "^0.52.0"
+  },
+  "private": true
+}

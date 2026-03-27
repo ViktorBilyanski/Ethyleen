@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "586120145846",
+    "firebase_url": "https://ethyleen-9d1d5-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "ethyleen-9d1d5",
+    "storage_bucket": "ethyleen-9d1d5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:586120145846:android:d2a876e9f8c9aa061a2f17",
+        "android_client_info": {
+          "package_name": "com.ethyleen.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEpK771ptGMr-3SJswZNhAWnN1PpLqYiw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
