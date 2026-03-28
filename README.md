@@ -129,30 +129,15 @@ Ethyleen/
 
 ### Wiring Diagram
 
-```
-                    ┌─────────────────────────────┐
-                    │   ESP32-S3-DevKit-Lipo       │
-                    │          (Olimex)             │
-                    │                               │
-   MQ-135 AO ──────┤ GPIO 1 (ADC1_CH0)             │
-   MQ-3  AO ──────┤ GPIO 2 (ADC1_CH1)             │
-   MQ-9  AO ──────┤ GPIO 4 (ADC1_CH3)             │
-                    │                               │
-                    │ UEXT <── CABLE-UEXT-JWF ──── MOD-BME280
-                    │   (SDA=GPIO8, SCL=GPIO9)      │
-                    │                               │
-   USB Power Bank ──┤ USB-C (5V power input)        │
-                    └─────────────────────────────┘
+<img width="916" height="720" alt="image" src="https://github.com/user-attachments/assets/789c0df1-3542-476f-8aa1-38991c472ee3" />
 
-   MT3608 Boost Converter:
-   Power Bank 5V ──▶ MT3608 IN ──▶ MT3608 OUT (5V) ──▶ MQ-135 VCC
-                                                    ──▶ MQ-3  VCC
-                                                    ──▶ MQ-9  VCC
 
-   All MQ sensor GND pins -> common GND on breadboard
-   MT3608 GND -> common GND on breadboard
-   ESP32-S3 GND -> common GND on breadboard
-```
+### What Else You Might Need
+
+- **USB-C cable** — for programming the ESP32-S3 and charging the battery (may be included with the dev kit)
+- **Enclosure** — a ventilated plastic container or 3D-printed capsule to hold everything inside the fridge; must have holes/slots so air reaches the MQ sensors
+
+That's it — your BOM is complete for a working prototype.
 
 ## Setup
 
