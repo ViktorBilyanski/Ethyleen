@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Dev/ethyleen-app/lib/**)",
+      "Bash(cp \"C:/Users/Petar Antonov/Ethyleen/app/lib/main.dart\" \"C:/Dev/ethyleen-app/lib/main.dart\")",
+      "Bash(cp \"C:/Users/Petar Antonov/Ethyleen/app/lib/services/firebase_service.dart\" \"C:/Dev/ethyleen-app/lib/services/firebase_service.dart\")",
+      "Bash(\"C:/Users/Petar Antonov/Downloads/flutter_windows_3.41.6-stable/flutter/bin/flutter.bat\" pub get)",
+      "Bash(\"C:/Users/Petar Antonov/Downloads/flutter_windows_3.41.6-stable/flutter/bin/flutter.bat\" pub deps)",
+      "Bash(\"C:/Users/Petar Antonov/Downloads/flutter_windows_3.41.6-stable/flutter/bin/flutter.bat\" pub deps --no-dev)",
+      "Bash(for f:*)",
+      "Bash(do cp:*)",
+      "Bash(done)"
+    ]
+  }
+}

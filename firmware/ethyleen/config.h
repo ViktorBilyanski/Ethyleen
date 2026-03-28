@@ -28,32 +28,51 @@
 #define BME280_SCL   9      // UEXT pin 5
 #define BME280_ADDR  0x77   // Your BME280's I2C address
 
-// ==================== Battery Monitoring ====================
-// Olimex ESP32-S3-DevKit-Lipo has a voltage divider for battery sensing
-#define BAT_SENSE_PIN  3    // GPIO3 — battery voltage (via divider)
-#define BAT_DIVIDER    2.0  // Voltage divider ratio (adjust if needed)
-#define BAT_FULL_V     4.2  // Fully charged LiPo voltage
-#define BAT_EMPTY_V    3.3  // Cutoff voltage
+// ==================== Battery Monitoring (Power Bank) ====================
+// Time-based estimate — no hardware sensor needed
+// Adjust these values for your setup:
+#define POWERBANK_CAPACITY_MAH  10000  // Power bank capacity in mAh
+#define ESTIMATED_CURRENT_MA    600    // Total draw: ESP32 ~150mA + 3x MQ heaters ~450mA
 
 // ==================== Sensor Calibration ====================
-// Calibrated from your sensors' clean-air readings (raw: 560, 1036, 295)
-#define MQ135_R0 17.53  // kOhm
-#define MQ3_R0   0.49   // kOhm
-#define MQ9_R0   12.88  // kOhm
+// Default R0 values (used if never calibrated via app)
+// Calibrated from clean-air readings at ~23°C (raw: 560, 1036, 295)
+#define MQ135_R0_DEFAULT 17.53  // kOhm
+#define MQ3_R0_DEFAULT   0.49   // kOhm
+#define MQ9_R0_DEFAULT   12.88  // kOhm
 
 // Load resistor value on Elimex sensor boards
 #define RL_VALUE 10.0  // kOhm (check your board — some use 1kOhm)
 
-// ==================== Thresholds (ppm) ====================
-// Below WARNING = FRESH, between WARNING and SPOILED = WARNING, above SPOILED = SPOILED
-#define MQ135_WARNING_PPM  30.0
-#define MQ135_SPOILED_PPM  80.0
+// Clean air resistance ratios (from datasheets)
+// R0 = Rs_in_clean_air / clean_air_factor
+#define MQ135_CLEAN_AIR_FACTOR  3.6
+#define MQ3_CLEAN_AIR_FACTOR    10.0
+#define MQ9_CLEAN_AIR_FACTOR    9.8
 
-#define MQ3_WARNING_PPM    15.0
-#define MQ3_SPOILED_PPM    50.0
+// Calibration settings
+#define CALIBRATION_SAMPLES     50      // Number of samples to average
+#define CALIBRATION_DELAY_MS    500     // Delay between samples (~25s total)
+#define CALIBRATION_CHECK_MS    10000   // Check for calibration command every 10s
 
-#define MQ9_WARNING_PPM    20.0
-#define MQ9_SPOILED_PPM    60.0
+// ==================== Thresholds ====================
+// After calibration, thresholds are calculated as: baseline_ppm * multiplier
+// These multipliers control sensitivity:
+#define WARNING_MULTIPLIER  3.0f   // warning at 3x the clean baseline
+#define SPOILED_MULTIPLIER  8.0f   // spoiled at 8x the clean baseline
+
+// Minimum floors (prevent false positives from sensor noise)
+#define MQ135_MIN_WARNING  1.0f
+#define MQ3_MIN_WARNING    0.2f
+#define MQ9_MIN_WARNING    0.3f
+
+// Default thresholds (used before first calibration)
+#define MQ135_WARNING_DEFAULT  4.0
+#define MQ135_SPOILED_DEFAULT  10.0
+#define MQ3_WARNING_DEFAULT    0.5
+#define MQ3_SPOILED_DEFAULT    2.0
+#define MQ9_WARNING_DEFAULT    1.5
+#define MQ9_SPOILED_DEFAULT    5.0
 
 // ==================== Timing ====================
 #define READING_INTERVAL_MS  30000   // 30 seconds between readings

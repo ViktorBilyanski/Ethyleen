@@ -38,7 +38,7 @@ class SensorGauge extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: const Color(0xFF1E1E2E),
+        color: Theme.of(context).colorScheme.surface,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
           color: gaugeColor.withValues(alpha: 0.3),
@@ -50,8 +50,8 @@ class SensorGauge extends StatelessWidget {
         children: [
           Text(
             label,
-            style: const TextStyle(
-              color: Colors.white70,
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
               fontSize: 13,
               fontWeight: FontWeight.w600,
             ),
@@ -60,7 +60,7 @@ class SensorGauge extends StatelessWidget {
           Text(
             gasName,
             style: TextStyle(
-              color: Colors.white.withValues(alpha: 0.4),
+              color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.4),
               fontSize: 11,
             ),
           ),
@@ -73,6 +73,7 @@ class SensorGauge extends StatelessWidget {
                 value: value,
                 maxValue: maxValue,
                 color: gaugeColor,
+                bgColor: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.08),
               ),
               child: Center(
                 child: Column(
@@ -86,10 +87,10 @@ class SensorGauge extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const Text(
+                    Text(
                       'ppm',
                       style: TextStyle(
-                        color: Colors.white54,
+                        color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.54),
                         fontSize: 11,
                       ),
                     ),
@@ -108,11 +109,13 @@ class _GaugePainter extends CustomPainter {
   final double value;
   final double maxValue;
   final Color color;
+  final Color bgColor;
 
   _GaugePainter({
     required this.value,
     required this.maxValue,
     required this.color,
+    required this.bgColor,
   });
 
   @override
@@ -122,7 +125,7 @@ class _GaugePainter extends CustomPainter {
 
     // Background arc
     final bgPaint = Paint()
-      ..color = Colors.white.withValues(alpha: 0.08)
+      ..color = bgColor
       ..style = PaintingStyle.stroke
       ..strokeWidth = 8
       ..strokeCap = StrokeCap.round;

@@ -46,4 +46,64 @@ class FirebaseService {
       return event.snapshot.value as String?;
     });
   }
+
+  /// Send calibration command to the device
+  Future<void> startCalibration() async {
+    // Clear old calibration result so the stream doesn't fire immediately
+    await _db.child('calibration/$deviceId').remove();
+    await _db.child('commands/$deviceId/calibrate').set(true);
+  }
+
+  /// Stream of calibration status from the device
+  Stream<Map<String, dynamic>?> get calibrationStream {
+    return _db.child('calibration/$deviceId').onValue.map((event) {
+      final data = event.snapshot.value;
+      if (data == null) return null;
+      return Map<String, dynamic>.from(data as Map);
+    });
+  }
+
+  /// Fetch current thresholds from the last calibration
+  Future<Map<String, double>> getThresholds() async {
+    final snapshot = await _db.child('calibration/$deviceId').get();
+    if (!snapshot.exists) {
+      return {
+        'mq135_warning': 4.0, 'mq135_spoiled': 10.0,
+        'mq3_warning': 0.5, 'mq3_spoiled': 2.0,
+        'mq9_warning': 1.5, 'mq9_spoiled': 5.0,
+      };
+    }
+    final data = Map<String, dynamic>.from(snapshot.value as Map);
+    return {
+      'mq135_warning': (data['mq135_warning'] ?? 4.0).toDouble(),
+      'mq135_spoiled': (data['mq135_spoiled'] ?? 10.0).toDouble(),
+      'mq3_warning': (data['mq3_warning'] ?? 0.5).toDouble(),
+      'mq3_spoiled': (data['mq3_spoiled'] ?? 2.0).toDouble(),
+      'mq9_warning': (data['mq9_warning'] ?? 1.5).toDouble(),
+      'mq9_spoiled': (data['mq9_spoiled'] ?? 5.0).toDouble(),
+    };
+  }
+
+  /// Stream thresholds (updates when calibration completes)
+  Stream<Map<String, double>> get thresholdsStream {
+    return _db.child('calibration/$deviceId').onValue.map((event) {
+      final data = event.snapshot.value;
+      if (data == null) {
+        return {
+          'mq135_warning': 4.0, 'mq135_spoiled': 10.0,
+          'mq3_warning': 0.5, 'mq3_spoiled': 2.0,
+          'mq9_warning': 1.5, 'mq9_spoiled': 5.0,
+        };
+      }
+      final map = Map<String, dynamic>.from(data as Map);
+      return {
+        'mq135_warning': (map['mq135_warning'] ?? 4.0).toDouble(),
+        'mq135_spoiled': (map['mq135_spoiled'] ?? 10.0).toDouble(),
+        'mq3_warning': (map['mq3_warning'] ?? 0.5).toDouble(),
+        'mq3_spoiled': (map['mq3_spoiled'] ?? 2.0).toDouble(),
+        'mq9_warning': (map['mq9_warning'] ?? 1.5).toDouble(),
+        'mq9_spoiled': (map['mq9_spoiled'] ?? 5.0).toDouble(),
+      };
+    });
+  }
 }

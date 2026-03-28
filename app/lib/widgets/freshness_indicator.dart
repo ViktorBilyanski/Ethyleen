@@ -90,7 +90,7 @@ class FreshnessIndicator extends StatelessWidget {
               Text(
                 description,
                 style: TextStyle(
-                  color: Colors.white.withValues(alpha: 0.6),
+                  color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
                   fontSize: 14,
                 ),
               ),

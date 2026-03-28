@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="18dp"
+    android:background="@drawable/widget_bg">
+
+    <!-- Row 1: App name + status pill -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Ethyleen"
+            android:textSize="17sp"
+            android:textColor="#202124"
+            android:textStyle="bold"
+            android:letterSpacing="0.02" />
+
+        <TextView
+            android:id="@+id/freshness_pill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FRESH"
+            android:textSize="12sp"
+            android:textColor="#2E7D32"
+            android:textStyle="bold"
+            android:letterSpacing="0.05"
+            android:background="@drawable/pill_bg_fresh"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp" />
+    </LinearLayout>
+
+    <!-- Row 2: Subtitle -->
+    <TextView
+        android:id="@+id/subtitle_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Everything looks good"
+        android:textSize="12sp"
+        android:textColor="#5F6368"
+        android:layout_marginTop="2dp" />
+
+    <!-- Spacer -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="12dp" />
+
+    <!-- Row 3: Stats -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Temp -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@drawable/stat_bg"
+            android:padding="10dp"
+            android:layout_marginEnd="5dp">
+
+            <TextView
+                android:id="@+id/temp_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="--"
+                android:textSize="17sp"
+                android:textColor="#202124"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Temp"
+                android:textSize="11sp"
+                android:textColor="#80868B"
+                android:layout_marginTop="1dp" />
+        </LinearLayout>
+
+        <!-- Humidity -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@drawable/stat_bg"
+            android:padding="10dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp">
+
+            <TextView
+                android:id="@+id/humidity_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="--"
+                android:textSize="17sp"
+                android:textColor="#202124"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Humidity"
+                android:textSize="11sp"
+                android:textColor="#80868B"
+                android:layout_marginTop="1dp" />
+        </LinearLayout>
+
+        <!-- Battery -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@drawable/stat_bg"
+            android:padding="10dp"
+            android:layout_marginStart="5dp">
+
+            <TextView
+                android:id="@+id/battery_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="--"
+                android:textSize="17sp"
+                android:textColor="#202124"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Battery"
+                android:textSize="11sp"
+                android:textColor="#80868B"
+                android:layout_marginTop="1dp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

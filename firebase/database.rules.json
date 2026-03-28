@@ -25,6 +25,18 @@
         ".read": true,
         ".write": true
       }
+    },
+    "commands": {
+      "$device_id": {
+        ".read": true,
+        ".write": true
+      }
+    },
+    "calibration": {
+      "$device_id": {
+        ".read": true,
+        ".write": true
+      }
     }
   }
 }

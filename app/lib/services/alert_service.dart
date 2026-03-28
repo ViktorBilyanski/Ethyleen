@@ -1,9 +1,11 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import '../models/sensor_reading.dart';
 import 'firebase_service.dart';
+import 'settings_service.dart';
 
 class AlertService {
   final FirebaseService _firebase = FirebaseService();
+  final SettingsService _settings = SettingsService();
   final FlutterLocalNotificationsPlugin _notifications =
       FlutterLocalNotificationsPlugin();
 
@@ -21,15 +23,19 @@ class AlertService {
     );
 
     // Create notification channel (Android 8+)
-    await _notifications
+    final androidPlugin = _notifications
         .resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>()
-        ?.createNotificationChannel(const AndroidNotificationChannel(
+            AndroidFlutterLocalNotificationsPlugin>();
+    await androidPlugin?.createNotificationChannel(
+        const AndroidNotificationChannel(
       'spoilage_alerts',
       'Spoilage Alerts',
       description: 'Alerts when food spoilage is detected',
       importance: Importance.high,
     ));
+
+    // Request notification permission (Android 13+)
+    await androidPlugin?.requestNotificationsPermission();
   }
 
   /// Start listening to readings and fire local notifications
@@ -47,6 +53,7 @@ class AlertService {
       if (reading.freshness == _lastAlertedLevel) return;
       _lastAlertedLevel = reading.freshness;
 
+      if (!_settings.notificationsEnabled || _settings.alertsMuted) return;
       _showAlert(reading);
     });
   }
@@ -57,9 +64,9 @@ class AlertService {
     final title = isWarning ? 'Food spoilage warning' : 'Food is spoiled!';
 
     final causes = <String>[];
-    if (reading.mq135 >= 30) causes.add('protein breakdown (meat/dairy)');
-    if (reading.mq3 >= 15) causes.add('fermentation (fruits/bread)');
-    if (reading.mq9 >= 20) causes.add('anaerobic decay (sealed food)');
+    if (reading.mq135 >= 4) causes.add('protein breakdown (meat/dairy)');
+    if (reading.mq3 >= 0.5) causes.add('fermentation (fruits/bread)');
+    if (reading.mq9 >= 1.5) causes.add('anaerobic decay (sealed food)');
 
     final body = isWarning
         ? 'Early signs: ${causes.join(", ")}. Use affected food soon.'

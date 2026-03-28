@@ -11,7 +11,7 @@ class RecipeCard extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: const Color(0xFF1E1E2E),
+        color: Theme.of(context).colorScheme.surface,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
           color: const Color(0xFF42A5F5).withValues(alpha: 0.3),
@@ -28,7 +28,7 @@ class RecipeCard extends StatelessWidget {
               Text(
                 'AI Recipe Suggestion',
                 style: TextStyle(
-                  color: Colors.white.withValues(alpha: 0.9),
+                  color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.9),
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                 ),
@@ -39,7 +39,7 @@ class RecipeCard extends StatelessWidget {
           Text(
             recipe,
             style: TextStyle(
-              color: Colors.white.withValues(alpha: 0.7),
+              color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
               fontSize: 14,
               height: 1.5,
             ),

@@ -12,6 +12,7 @@ class SensorReading {
   final double trendMq135;
   final double trendMq3;
   final double trendMq9;
+  final double estHours; // estimated hours until spoiled (-1 = stable)
 
   SensorReading({
     required this.mq135,
@@ -25,6 +26,7 @@ class SensorReading {
     this.trendMq135 = 0,
     this.trendMq3 = 0,
     this.trendMq9 = 0,
+    this.estHours = -1,
   });
 
   factory SensorReading.fromMap(Map<dynamic, dynamic> map) {
@@ -40,6 +42,7 @@ class SensorReading {
       trendMq135: (map['trend_mq135'] ?? 0).toDouble(),
       trendMq3: (map['trend_mq3'] ?? 0).toDouble(),
       trendMq9: (map['trend_mq9'] ?? 0).toDouble(),
+      estHours: (map['est_hours'] ?? -1).toDouble(),
     );
   }
 
